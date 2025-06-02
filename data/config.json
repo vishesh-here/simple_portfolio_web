@@ -1,0 +1,103 @@
+{
+  "site": {
+    "title": "Alex Morgan",
+    "description": "Product Designer & Creative Technologist",
+    "url": "https://alexmorgan.dev",
+    "theme": {
+      "primaryColor": "primary",
+      "accentColor": "accent",
+      "darkMode": true
+    }
+  },
+  "hero": {
+    "tagline": "Crafting digital experiences that matter",
+    "fullIntro": "I'm a product designer and creative technologist passionate about building beautiful, functional digital experiences. With 8+ years in the industry, I help startups and enterprises transform complex problems into elegant solutions.",
+    "profileImage": "/images/profile.jpg",
+    "ctas": [
+      {
+        "label": "Contact Me",
+        "href": "#contact",
+        "type": "primary"
+      },
+      {
+        "label": "Hire Me",
+        "href": "mailto:hello@alexmorgan.dev",
+        "type": "secondary"
+      },
+      {
+        "label": "Download Resume",
+        "href": "/resume.pdf",
+        "type": "outline"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/in/alexmorgan",
+        "type": "link"
+      }
+    ]
+  },
+  "services": [
+    {
+      "id": "product-strategy",
+      "title": "Product Strategy",
+      "description": "End-to-end product planning, user research, and strategic roadmapping to align business goals with user needs.",
+      "icon": "target"
+    },
+    {
+      "id": "ux-design",
+      "title": "UX/UI Design",
+      "description": "Beautiful, intuitive interfaces backed by solid user research and design systems thinking.",
+      "icon": "palette"
+    },
+    {
+      "id": "prototyping",
+      "title": "Prototyping",
+      "description": "Interactive prototypes and design systems that bridge the gap between design and development.",
+      "icon": "code"
+    },
+    {
+      "id": "mentorship",
+      "title": "Design Mentorship",
+      "description": "1-on-1 coaching for designers and PMs looking to level up their skills and advance their careers.",
+      "icon": "users"
+    }
+  ],
+  "about": {
+    "story": "Originally from San Francisco, I started my journey in tech as a frontend developer before transitioning into product design. I'm passionate about the intersection of technology and human behavior, and I believe great design should be invisible – it just works.",
+    "funFacts": [
+      "🎸 I play guitar in a indie rock band",
+      "🏔️ Climbed 15+ peaks in the Sierra Nevada",
+      "📚 Read 50+ books per year",
+      "☕ Coffee enthusiast (pour-over only)",
+      "🎨 Collect vintage design posters"
+    ],
+    "image": "/images/about.jpg"
+  },
+  "contact": {
+    "email": "hello@alexmorgan.dev",
+    "phone": "+1 (555) 123-4567",
+    "location": "San Francisco, CA",
+    "social": [
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/alexmorgan",
+        "icon": "linkedin"
+      },
+      {
+        "platform": "Twitter",
+        "url": "https://twitter.com/alexmorgan",
+        "icon": "twitter"
+      },
+      {
+        "platform": "Dribbble",
+        "url": "https://dribbble.com/alexmorgan",
+        "icon": "dribbble"
+      },
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/alexmorgan",
+        "icon": "github"
+      }
+    ]
+  }
+}

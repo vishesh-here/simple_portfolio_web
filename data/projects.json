@@ -1,0 +1,136 @@
+[
+  {
+    "id": "fintech-dashboard",
+    "title": "FinTech Dashboard Redesign",
+    "description": "Complete redesign of a financial analytics platform serving 10K+ users",
+    "thumbnail": "/images/projects/fintech-thumb.jpg",
+    "tags": ["UX Design", "Product Strategy", "B2B"],
+    "year": "2023",
+    "client": "TechFlow Inc.",
+    "duration": "4 months",
+    "role": "Lead Product Designer",
+    "overview": "Redesigned a complex financial analytics dashboard to improve user engagement and reduce support tickets by 40%.",
+    "challenge": "The existing dashboard was cluttered, slow, and users couldn't find key information quickly. Support tickets were increasing, and user satisfaction was declining.",
+    "solution": "Conducted extensive user research, simplified the information architecture, and implemented a new design system with improved data visualization.",
+    "results": [
+      "40% reduction in support tickets",
+      "60% improvement in task completion time",
+      "25% increase in daily active users",
+      "4.8/5 user satisfaction score"
+    ],
+    "images": [
+      "/images/projects/fintech-1.jpg",
+      "/images/projects/fintech-2.jpg",
+      "/images/projects/fintech-3.jpg"
+    ],
+    "content": [
+      {
+        "type": "text",
+        "content": "## Research & Discovery\n\nI started by conducting user interviews with 15 power users and analyzing support ticket data to understand pain points. The main issues were:\n\n- Information overload on the main dashboard\n- Poor navigation structure\n- Inconsistent design patterns\n- Slow loading times for data-heavy views"
+      },
+      {
+        "type": "image",
+        "src": "/images/projects/fintech-research.jpg",
+        "caption": "User journey mapping and pain point analysis"
+      },
+      {
+        "type": "text",
+        "content": "## Design Process\n\nI followed a human-centered design approach, starting with user needs and working backwards to technical constraints. The process included:\n\n1. **User Research** - Interviews, surveys, and analytics review\n2. **Information Architecture** - Card sorting and tree testing\n3. **Wireframing** - Low-fidelity concepts and user flows\n4. **Prototyping** - Interactive prototypes for testing\n5. **Visual Design** - High-fidelity designs and design system\n6. **Testing** - Usability testing and iteration"
+      },
+      {
+        "type": "table",
+        "headers": ["Metric", "Before", "After", "Improvement"],
+        "rows": [
+          ["Task Completion Time", "4.2 min", "1.7 min", "60% faster"],
+          ["User Satisfaction", "3.2/5", "4.8/5", "50% increase"],
+          ["Support Tickets", "120/month", "72/month", "40% reduction"],
+          ["Daily Active Users", "2,400", "3,000", "25% increase"]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mobile-banking-app",
+    "title": "Mobile Banking App",
+    "description": "Native iOS and Android app for a digital-first bank",
+    "thumbnail": "/images/projects/banking-thumb.jpg",
+    "tags": ["Mobile Design", "Fintech", "iOS", "Android"],
+    "year": "2023",
+    "client": "NeoBank",
+    "duration": "6 months",
+    "role": "Senior Product Designer",
+    "overview": "Designed a mobile-first banking experience that prioritizes security, simplicity, and speed for millennial and Gen-Z users.",
+    "challenge": "Traditional banking apps are complex and intimidating. Our target users wanted something simple, fast, and trustworthy.",
+    "solution": "Created a clean, intuitive interface with smart defaults, biometric authentication, and contextual financial insights.",
+    "results": [
+      "4.9/5 App Store rating",
+      "50K+ downloads in first month",
+      "85% user retention after 30 days",
+      "Featured by Apple as 'App of the Day'"
+    ],
+    "images": [
+      "/images/projects/banking-1.jpg",
+      "/images/projects/banking-2.jpg",
+      "/images/projects/banking-3.jpg"
+    ],
+    "content": [
+      {
+        "type": "text",
+        "content": "## The Challenge\n\nTraditional banking apps suffer from legacy thinking - they're often complex, intimidating, and designed for desktop-first experiences. Our research showed that younger users wanted:\n\n- **Simplicity** - Clear, jargon-free interface\n- **Speed** - Quick access to common tasks\n- **Security** - Trust through transparency\n- **Intelligence** - Helpful insights, not just data"
+      },
+      {
+        "type": "image",
+        "src": "/images/projects/banking-wireframes.jpg",
+        "caption": "Early wireframes exploring different navigation patterns"
+      },
+      {
+        "type": "text",
+        "content": "## Key Features\n\n### Smart Dashboard\nThe home screen adapts to user behavior, surfacing the most relevant information and actions. Instead of showing everything, we prioritize based on usage patterns and time of day.\n\n### Biometric Security\nFace ID and Touch ID integration makes the app both more secure and more convenient than traditional PIN-based systems.\n\n### Contextual Insights\nRather than overwhelming users with data, we provide actionable insights at the right moment - like spending alerts before payday or savings suggestions after large deposits."
+      }
+    ]
+  },
+  {
+    "id": "saas-onboarding",
+    "title": "SaaS Onboarding Flow",
+    "description": "Redesigned user onboarding to increase activation by 200%",
+    "thumbnail": "/images/projects/saas-thumb.jpg",
+    "tags": ["UX Design", "SaaS", "Onboarding", "Growth"],
+    "year": "2022",
+    "client": "CloudSync",
+    "duration": "3 months",
+    "role": "Product Designer",
+    "overview": "Completely reimagined the user onboarding experience for a B2B SaaS platform, resulting in significantly higher activation rates.",
+    "challenge": "Only 23% of new users were completing the onboarding process, leading to poor activation and high churn.",
+    "solution": "Simplified the flow, added progressive disclosure, and implemented contextual help to guide users to their first 'aha' moment.",
+    "results": [
+      "200% increase in onboarding completion",
+      "150% improvement in 30-day retention",
+      "45% reduction in support tickets",
+      "Shortened time-to-value from 2 weeks to 3 days"
+    ],
+    "images": [
+      "/images/projects/saas-1.jpg",
+      "/images/projects/saas-2.jpg",
+      "/images/projects/saas-3.jpg"
+    ],
+    "content": [
+      {
+        "type": "text",
+        "content": "## The Problem\n\nCloudSync's onboarding was a 12-step process that took users through every feature of the platform. While comprehensive, it was overwhelming and didn't help users achieve their goals quickly.\n\n**Key Issues:**\n- 77% drop-off rate during onboarding\n- Users couldn't find value quickly\n- Too many steps before the first 'win'\n- No personalization based on user type"
+      },
+      {
+        "type": "text",
+        "content": "## Research Insights\n\nThrough user interviews and session recordings, I discovered that users had three main goals:\n\n1. **Quick Setup** - Get their account configured fast\n2. **Immediate Value** - See how the product helps them\n3. **Confidence Building** - Feel capable of using the tool\n\nThe old flow addressed none of these effectively."
+      },
+      {
+        "type": "image",
+        "src": "/images/projects/saas-flow.jpg",
+        "caption": "Before and after user flow comparison"
+      },
+      {
+        "type": "text",
+        "content": "## The Solution\n\n### Progressive Onboarding\nInstead of front-loading all setup, I designed a progressive system that gets users to value quickly, then gradually introduces advanced features.\n\n### Personalized Paths\nUsers now choose their primary use case upfront, which customizes their entire onboarding experience.\n\n### Contextual Help\nIn-app guidance appears exactly when and where users need it, reducing cognitive load and support requests."
+      }
+    ]
+  }
+]

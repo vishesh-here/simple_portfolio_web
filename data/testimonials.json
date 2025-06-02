@@ -1,0 +1,47 @@
+[
+  {
+    "id": "sarah-chen",
+    "name": "Sarah Chen",
+    "role": "VP of Product",
+    "company": "TechFlow Inc.",
+    "image": "/images/testimonials/sarah.jpg",
+    "quote": "Alex transformed our entire product experience. Their attention to detail and user-centered approach resulted in a 40% reduction in support tickets and significantly happier users.",
+    "rating": 5
+  },
+  {
+    "id": "marcus-rodriguez",
+    "name": "Marcus Rodriguez",
+    "role": "CEO",
+    "company": "NeoBank",
+    "image": "/images/testimonials/marcus.jpg",
+    "quote": "Working with Alex was a game-changer for our mobile app. They delivered a beautiful, intuitive design that our users love. The app was featured by Apple and has maintained a 4.9-star rating.",
+    "rating": 5
+  },
+  {
+    "id": "emily-watson",
+    "name": "Emily Watson",
+    "role": "Head of Growth",
+    "company": "CloudSync",
+    "image": "/images/testimonials/emily.jpg",
+    "quote": "Alex's redesign of our onboarding flow was incredible. We saw a 200% increase in completion rates and our users are now getting value from day one. Highly recommend!",
+    "rating": 5
+  },
+  {
+    "id": "david-kim",
+    "name": "David Kim",
+    "role": "Engineering Manager",
+    "company": "TechFlow Inc.",
+    "image": "/images/testimonials/david.jpg",
+    "quote": "Alex bridges the gap between design and development beautifully. Their designs are not only gorgeous but also technically feasible and well-documented.",
+    "rating": 5
+  },
+  {
+    "id": "lisa-thompson",
+    "name": "Lisa Thompson",
+    "role": "Junior Designer",
+    "company": "TechFlow Inc.",
+    "image": "/images/testimonials/lisa.jpg",
+    "quote": "Alex is an amazing mentor. They helped me grow from a junior to mid-level designer in just one year. Their feedback is always constructive and actionable.",
+    "rating": 5
+  }
+]

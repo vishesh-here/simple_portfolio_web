@@ -1,0 +1,87 @@
+[
+  {
+    "id": "senior-designer-techflow",
+    "title": "Senior Product Designer",
+    "company": "TechFlow Inc.",
+    "location": "San Francisco, CA",
+    "startDate": "2022-01",
+    "endDate": null,
+    "current": true,
+    "description": "Leading design for B2B fintech products serving 10K+ users",
+    "achievements": [
+      "Redesigned core dashboard, reducing support tickets by 40%",
+      "Established design system used across 5 product teams",
+      "Mentored 3 junior designers",
+      "Led user research initiatives that informed product strategy"
+    ],
+    "skills": ["Product Design", "User Research", "Design Systems", "Figma", "Prototyping"]
+  },
+  {
+    "id": "product-designer-neobank",
+    "title": "Product Designer",
+    "company": "NeoBank",
+    "location": "Remote",
+    "startDate": "2020-06",
+    "endDate": "2021-12",
+    "current": false,
+    "description": "Designed mobile-first banking experiences for millennial users",
+    "achievements": [
+      "Launched iOS and Android apps with 4.9/5 rating",
+      "Designed onboarding flow with 85% completion rate",
+      "Collaborated with engineering on design system implementation",
+      "Conducted user interviews and usability testing"
+    ],
+    "skills": ["Mobile Design", "iOS", "Android", "User Testing", "Sketch"]
+  },
+  {
+    "id": "ux-designer-cloudsync",
+    "title": "UX Designer",
+    "company": "CloudSync",
+    "location": "Austin, TX",
+    "startDate": "2019-03",
+    "endDate": "2020-05",
+    "current": false,
+    "description": "Focused on SaaS onboarding and user activation",
+    "achievements": [
+      "Increased onboarding completion by 200%",
+      "Reduced time-to-value from 2 weeks to 3 days",
+      "Designed responsive web application",
+      "Created user journey maps and personas"
+    ],
+    "skills": ["SaaS Design", "Onboarding", "Web Design", "Analytics", "A/B Testing"]
+  },
+  {
+    "id": "junior-designer-startup",
+    "title": "Junior Product Designer",
+    "company": "StartupXYZ",
+    "location": "San Francisco, CA",
+    "startDate": "2017-08",
+    "endDate": "2019-02",
+    "current": false,
+    "description": "First design role, working on consumer mobile app",
+    "achievements": [
+      "Designed features used by 100K+ users",
+      "Created marketing website and landing pages",
+      "Collaborated with founders on product vision",
+      "Learned design thinking and user-centered design"
+    ],
+    "skills": ["Mobile Design", "Web Design", "Branding", "Illustration", "Adobe Creative Suite"]
+  },
+  {
+    "id": "frontend-developer-agency",
+    "title": "Frontend Developer",
+    "company": "Digital Agency Co.",
+    "location": "San Francisco, CA",
+    "startDate": "2016-01",
+    "endDate": "2017-07",
+    "current": false,
+    "description": "Built websites and web applications for various clients",
+    "achievements": [
+      "Developed 20+ client websites",
+      "Specialized in React and modern JavaScript",
+      "Collaborated closely with designers",
+      "Learned the importance of design-development collaboration"
+    ],
+    "skills": ["React", "JavaScript", "HTML/CSS", "Git", "Responsive Design"]
+  }
+]
