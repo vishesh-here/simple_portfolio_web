@@ -106,22 +106,6 @@ export function TestimonialsSection() {
                 <ChevronLeft className="w-5 h-5 text-neutral-600" />
               </button>
 
-              {/* Dots */}
-              <div className="flex gap-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                      index === currentIndex
-                        ? 'bg-primary-500 w-8'
-                        : 'bg-neutral-300 hover:bg-neutral-400'
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
-              </div>
-
               <button
                 onClick={nextTestimonial}
                 className="p-2 rounded-full bg-white border border-neutral-200 hover:bg-neutral-50 transition-colors duration-200"
@@ -130,48 +114,6 @@ export function TestimonialsSection() {
                 <ChevronRight className="w-5 h-5 text-neutral-600" />
               </button>
             </div>
-          </div>
-
-          {/* All Testimonials Grid (Hidden on mobile) */}
-          <div className="hidden lg:grid lg:grid-cols-3 gap-6 mt-16">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -4 }}
-                className={`card cursor-pointer transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'ring-2 ring-primary-500 shadow-lg'
-                    : 'hover:shadow-md'
-                }`}
-                onClick={() => setCurrentIndex(index)}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden">
-                    <Image
-                      src={testimonial.image || '/images/placeholder-avatar.jpg'}
-                      alt={testimonial.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="font-medium text-neutral-900 text-sm">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-xs text-neutral-600">
-                      {testimonial.role}
-                    </div>
-                  </div>
-                </div>
-                <p className="text-sm text-neutral-600 leading-relaxed line-clamp-3">
-                  "{testimonial.quote}"
-                </p>
-              </motion.div>
-            ))}
           </div>
         </div>
       </div>
