@@ -78,8 +78,8 @@ export function useMediaQuery(query: string) {
       setMatches(media.matches)
     }
     const listener = () => setMatches(media.matches)
-    media.addListener(listener)
-    return () => media.removeListener(listener)
+    media.addEventListener('change', listener)
+    return () => media.removeEventListener('change', listener)
   }, [matches, query])
 
   return matches
@@ -88,12 +88,15 @@ export function useMediaQuery(query: string) {
 // Portfolio Data Hooks - Read from localStorage with static JSON fallback
 export function usePortfolioConfig() {
   // Import static data as fallback
-  const [staticConfig, setStaticConfig] = useState<any>(null)
+  const [staticConfig, setStaticConfig] = useState<any>({})
   
   useEffect(() => {
     // Dynamically import static config
     import('@/data/config.json').then((data) => {
-      setStaticConfig(data.default)
+      setStaticConfig(data.default || {})
+    }).catch((error) => {
+      console.error('Error loading config:', error)
+      setStaticConfig({})
     })
   }, [])
 
@@ -104,16 +107,22 @@ export function usePortfolioConfig() {
 }
 
 export function usePortfolioProjects() {
+  // Import static data as fallback
   const [staticProjects, setStaticProjects] = useState<any[]>([])
   
   useEffect(() => {
+    // Dynamically import static projects
     import('@/data/projects.json').then((data) => {
-      setStaticProjects(data.default)
+      setStaticProjects(data.default || [])
+    }).catch((error) => {
+      console.error('Error loading projects:', error)
+      setStaticProjects([])
     })
   }, [])
 
   const [storedProjects] = useLocalStorage('admin-projects', [])
   
+  // Return localStorage data if available, otherwise static data
   return storedProjects.length > 0 ? storedProjects : staticProjects
 }
 
@@ -122,7 +131,10 @@ export function usePortfolioCareer() {
   
   useEffect(() => {
     import('@/data/career.json').then((data) => {
-      setStaticCareer(data.default)
+      setStaticCareer(data.default || [])
+    }).catch((error) => {
+      console.error('Error loading career data:', error)
+      setStaticCareer([])
     })
   }, [])
 

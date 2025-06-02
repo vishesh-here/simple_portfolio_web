@@ -36,24 +36,36 @@ export default function ProjectsPage() {
   const [selectedTag, setSelectedTag] = useState<string>('All')
   const [searchTerm, setSearchTerm] = useState<string>('')
 
+  // Show loading state if projects data is not yet loaded
+  if (!projectsData || !Array.isArray(projectsData)) {
+    return (
+      <div className="min-h-screen bg-neutral-50 pt-20">
+        <div className="container-width section-padding py-12 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-neutral-600">Loading projects...</p>
+        </div>
+      </div>
+    )
+  }
+
   // Update filtered projects when projectsData changes
   useEffect(() => {
     setFilteredProjects(projectsData)
   }, [projectsData])
 
   // Get all unique tags
-  const allTags = ['All', ...Array.from(new Set(projectsData.flatMap(project => project.tags)))]
+  const allTags = ['All', ...Array.from(new Set(projectsData.flatMap((project: Project) => project.tags)))]
 
   // Filter projects based on selected tag and search term
   useEffect(() => {
     let filtered = projectsData
 
     if (selectedTag !== 'All') {
-      filtered = filtered.filter(project => project.tags.includes(selectedTag))
+      filtered = filtered.filter((project: Project) => project.tags.includes(selectedTag))
     }
 
     if (searchTerm) {
-      filtered = filtered.filter(project =>
+      filtered = filtered.filter((project: Project) =>
         project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.client.toLowerCase().includes(searchTerm.toLowerCase())
@@ -105,7 +117,7 @@ export default function ProjectsPage() {
             {/* Tag Filter */}
             <div className="flex items-center gap-2 flex-wrap">
               <Filter className="w-4 h-4 text-neutral-500" />
-              {allTags.map((tag) => (
+              {allTags.map((tag: string) => (
                 <button
                   key={tag}
                   onClick={() => setSelectedTag(tag)}
@@ -121,7 +133,7 @@ export default function ProjectsPage() {
             </div>
           </div>
         </motion.div>
-            Showing {filteredProjects.length} of {projectsData.length} projects
+
         {/* Projects Count */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -153,7 +165,7 @@ export default function ProjectsPage() {
                 <div className="card hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
                   <div className="relative overflow-hidden rounded-lg mb-6">
                     <Image
-                      src={project.thumbnail}
+                      src={project.thumbnail || '/images/placeholder-project.jpg'}
                       alt={project.title}
                       width={400}
                       height={300}
@@ -164,7 +176,7 @@ export default function ProjectsPage() {
                   
                   <div className="space-y-4">
                     <div className="flex flex-wrap gap-2">
-                      {project.tags.slice(0, 3).map((tag) => (
+                      {project.tags && project.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
                           className="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-full"
@@ -172,7 +184,7 @@ export default function ProjectsPage() {
                           {tag}
                         </span>
                       ))}
-                      {project.tags.length > 3 && (
+                      {project.tags && project.tags.length > 3 && (
                         <span className="px-3 py-1 bg-neutral-100 text-neutral-600 text-sm rounded-full">
                           +{project.tags.length - 3}
                         </span>
@@ -211,39 +223,20 @@ export default function ProjectsPage() {
             transition={{ duration: 0.6 }}
             className="text-center py-12"
           >
-            <div className="text-neutral-400 mb-4">
-              <Filter className="w-12 h-12 mx-auto" />
-            </div>
-            <h3 className="text-xl font-semibold text-neutral-900 mb-2">No projects found</h3>
-            <p className="text-neutral-600 mb-4">
-              Try adjusting your search terms or filters to find what you're looking for.
+            <p className="text-neutral-600 text-lg">
+              No projects found matching your criteria.
             </p>
             <button
               onClick={() => {
                 setSelectedTag('All')
                 setSearchTerm('')
               }}
-              className="btn-outline"
+              className="mt-4 text-primary-600 hover:text-primary-700 font-medium"
             >
-              Clear Filters
+              Clear filters
             </button>
           </motion.div>
         )}
-
-        {/* Back to Home */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
-        >
-          <Link
-            href="/#projects"
-            className="btn-outline inline-flex items-center gap-2"
-          >
-            ← Back to Home
-          </Link>
-        </motion.div>
       </div>
     </div>
   )

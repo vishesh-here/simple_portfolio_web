@@ -74,7 +74,7 @@ export function ServicesSection() {  const config = usePortfolioConfig()
           viewport={{ once: true }}
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
         >
-          {services.map((service: any, index: number) => {
+          {services.map((service: any) => {
             const IconComponent = iconMap[service.icon as keyof typeof iconMap] || Target
 
             return (

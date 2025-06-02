@@ -58,7 +58,7 @@ export function CareerSection() {  const career = usePortfolioCareer()
             {/* Timeline Line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-200 via-primary-400 to-primary-200 hidden lg:block" />
 
-            {career.map((role, index) => (
+            {career && career.map((role: any) => (
               <motion.div
                 key={role.id}
                 variants={itemVariants}

@@ -6,7 +6,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ExternalLink } from 'lucide-react'
 import { usePortfolioProjects } from '@/lib/hooks'
-import { Project } from '@/lib/types'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -30,8 +29,22 @@ const cardVariants = {
   },
 }
 
-export function ProjectsSection() {  const projectsData = usePortfolioProjects()
-    // Show only first 3 projects on homepage
+export function ProjectsSection() {
+  const projectsData = usePortfolioProjects()
+  
+  // Return loading state if projects data is not yet loaded
+  if (!projectsData || !Array.isArray(projectsData)) {
+    return (
+      <section id="projects" className="py-20 lg:py-32 bg-neutral-50">
+        <div className="container-width section-padding text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-neutral-600">Loading projects...</p>
+        </div>
+      </section>
+    )
+  }
+  
+  // Show only first 3 projects on homepage
   const featuredProjects = projectsData.slice(0, 3)
 
   return (
@@ -98,7 +111,7 @@ export function ProjectsSection() {  const projectsData = usePortfolioProjects()
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2">
-                      {project.tags.slice(0, 3).map((tag: string) => (
+                      {project.tags && project.tags.slice(0, 3).map((tag: string) => (
                         <span
                           key={tag}
                           className="px-3 py-1 bg-neutral-100 text-neutral-600 text-sm rounded-full"
@@ -106,7 +119,7 @@ export function ProjectsSection() {  const projectsData = usePortfolioProjects()
                           {tag}
                         </span>
                       ))}
-                      {project.tags.length > 3 && (
+                      {project.tags && project.tags.length > 3 && (
                         <span className="px-3 py-1 bg-neutral-100 text-neutral-600 text-sm rounded-full">
                           +{project.tags.length - 3}
                         </span>

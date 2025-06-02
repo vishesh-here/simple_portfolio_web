@@ -23,6 +23,7 @@ export default function ServicesManagement({ onDataChange, onDataSave }: Service
   const [services, setServices] = useState<Service[]>([])
   const [editingService, setEditingService] = useState<Service | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [isDataLoading, setIsDataLoading] = useState(true)
 
   // Available icons for services
   const availableIcons = [
@@ -32,19 +33,45 @@ export default function ServicesManagement({ onDataChange, onDataSave }: Service
 
   // Initialize services when config loads
   useEffect(() => {
-    if (config?.services) {
-      setServices(config.services)
+    console.log('Config loaded:', config) // Debug log
+    
+    if (config && typeof config === 'object') {
+      if (config.services && Array.isArray(config.services)) {
+        setServices(config.services)
+        console.log('Services loaded:', config.services) // Debug log
+      } else {
+        console.log('No services found in config, initializing empty array')
+        setServices([])
+      }
+      setIsDataLoading(false)
     }
   }, [config])
+
+  // Show loading state while data is loading
+  if (isDataLoading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="text-center">
+          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-primary-600" />
+          <p className="text-neutral-600">Loading services...</p>
+        </div>
+      </div>
+    )
+  }
 
   const handleSave = async () => {
     setIsLoading(true)
     try {
-      const updatedConfig = { ...config, services }
+      // Ensure we have a valid config object
+      const baseConfig = config && typeof config === 'object' ? config : {}
+      const updatedConfig = { ...baseConfig, services }
+      
       localStorage.setItem('admin-config', JSON.stringify(updatedConfig))
       onDataSave()
+      console.log('Services saved successfully:', services) // Debug log
       alert('Services saved successfully!')
     } catch (error) {
+      console.error('Error saving services:', error) // Debug log
       alert('Error saving services. Please try again.')
     } finally {
       setIsLoading(false)
@@ -61,6 +88,9 @@ export default function ServicesManagement({ onDataChange, onDataSave }: Service
         }))
         setServices(servicesWithFeatures)
         onDataChange()
+      }).catch((error) => {
+        console.error('Error loading default services:', error)
+        alert('Error loading default services. Please try again.')
       })
     }
   }

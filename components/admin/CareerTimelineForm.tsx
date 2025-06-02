@@ -30,8 +30,20 @@ export default function CareerTimelineForm({ onDataChange, onDataSave }: CareerT
 
   // Initialize career items when data loads
   useEffect(() => {
-    if (career) {
-      setCareerItems(career)
+    if (career && career.length > 0) {
+      // Transform JSON structure to admin structure
+      const transformedCareer = career.map((item: any) => ({
+        id: item.id,
+        title: item.title,
+        company: item.company,
+        location: item.location,
+        period: item.period || `${item.startDate} - ${item.endDate || 'Present'}`,
+        description: item.description,
+        achievements: item.achievements || [],
+        technologies: item.skills || item.technologies || [],
+        type: item.type || 'work'
+      }))
+      setCareerItems(transformedCareer)
     }
   }, [career])
 
@@ -51,16 +63,20 @@ export default function CareerTimelineForm({ onDataChange, onDataSave }: CareerT
   const resetToDefaults = () => {
     if (confirm('Reset career timeline to defaults? This will undo all changes.')) {
       import('@/data/career.json').then((defaultCareer) => {
-        // Ensure each career item has the required properties
+        // Transform JSON structure to admin structure
         const careerItemsWithRequiredProps = defaultCareer.default.map((item: any) => ({
-          ...item,
-          period: item.period || `${item.startDate} - ${item.endDate || 'Present'}`,
-          technologies: item.skills || item.technologies || [],
+          id: item.id,
+          title: item.title,
+          company: item.company,
+          location: item.location,
+          period: item.period || `${item.startDate} - ${item.endDate || 'Present'}`,          description: item.description,
+          achievements: item.achievements || [],          technologies: item.skills || item.technologies || [],
           type: item.type || 'work'
         }))
         setCareerItems(careerItemsWithRequiredProps)
-        onDataChange()
-      })
+        onDataChange()      }).catch((error) => {
+        console.error('Error loading default career data:', error)
+        alert('Error loading default career data. Please try again.')      })
     }
   }
 

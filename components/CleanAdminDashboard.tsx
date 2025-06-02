@@ -2,12 +2,15 @@
 
 import React, { useState } from 'react'
 import { Settings, User, Briefcase, FolderOpen, Calendar, MessageSquare, Mail } from 'lucide-react'
+import DebugConfig from './DebugConfig'
+import SimpleConfigTest from './SimpleConfigTest'
+import StaticConfigTest from './StaticConfigTest'
 
 // Import admin form components
 import SiteSettingsForm from './admin/SiteSettingsForm'
 import HeroSectionForm from './admin/HeroSectionForm'
 import AboutSectionForm from './admin/AboutSectionForm'
-import ServicesManagement from './admin/ServicesManagement'
+import ServicesManagementFixed from './admin/ServicesManagementFixed'
 import ProjectsManagement from './admin/ProjectsManagement'
 import CareerTimelineForm from './admin/CareerTimelineForm'
 import TestimonialsManagement from './admin/TestimonialsManagement'
@@ -21,7 +24,7 @@ const adminSections = [
   { id: 'site', label: 'Site Settings', icon: Settings, component: SiteSettingsForm },
   { id: 'hero', label: 'Hero Section', icon: User, component: HeroSectionForm },
   { id: 'about', label: 'About Me', icon: User, component: AboutSectionForm },
-  { id: 'services', label: 'Services', icon: Briefcase, component: ServicesManagement },
+  { id: 'services', label: 'Services', icon: Briefcase, component: ServicesManagementFixed },
   { id: 'projects', label: 'Projects', icon: FolderOpen, component: ProjectsManagement },
   { id: 'career', label: 'Career', icon: Calendar, component: CareerTimelineForm },
   { id: 'testimonials', label: 'Testimonials', icon: MessageSquare, component: TestimonialsManagement },
@@ -97,12 +100,15 @@ export default function SimpleAdminDashboard({ onLogout }: AdminDashboardProps) 
         {/* Main Content */}
         <main className="flex-1 p-6">
           <div className="max-w-4xl mx-auto">
-            {ActiveComponent && (
-              <ActiveComponent
-                onDataChange={handleDataChange}
-                onDataSave={handleDataSave}
-              />
-            )}
+            {/* Debug Components - Remove after testing */}
+            <SimpleConfigTest />
+            <StaticConfigTest />
+            <DebugConfig />
+            
+            {ActiveComponent && React.createElement(ActiveComponent, {
+              onDataChange: handleDataChange,
+              onDataSave: handleDataSave
+            })}
           </div>
         </main>
       </div>

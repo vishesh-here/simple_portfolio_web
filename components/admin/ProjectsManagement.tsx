@@ -44,8 +44,26 @@ export default function ProjectsManagement({ onDataChange, onDataSave }: Project
 
   // Initialize projects when data loads
   useEffect(() => {
-    if (projects) {
-      setProjectsList(projects)
+    if (projects && projects.length > 0) {
+      // Transform JSON structure to admin structure
+      const transformedProjects = projects.map((project: any) => ({
+        id: project.id,
+        title: project.title,
+        description: project.description,
+        longDescription: project.overview || project.longDescription || project.description,
+        image: project.thumbnail || project.image || '',
+        technologies: project.tags || project.technologies || [],
+        category: project.category || 'Web Development',
+        featured: project.featured || false,
+        status: project.status || 'completed',
+        links: {
+          live: project.links?.live || project.liveUrl || '',
+          github: project.links?.github || project.githubUrl || '',
+          demo: project.links?.demo || project.demoUrl || ''
+        },
+        gallery: project.images || project.gallery || []
+      }))
+      setProjectsList(transformedProjects)
     }
   }, [projects])
 
@@ -65,9 +83,11 @@ export default function ProjectsManagement({ onDataChange, onDataSave }: Project
   const resetToDefaults = () => {
     if (confirm('Reset projects to defaults? This will undo all changes.')) {
       import('@/data/projects.json').then((defaultProjects) => {
-        // Ensure each project has the required properties
+        // Transform JSON structure to admin structure
         const projectsWithRequiredProps = defaultProjects.default.map((project: any) => ({
-          ...project,
+          id: project.id,
+          title: project.title,
+          description: project.description,
           longDescription: project.overview || project.longDescription || project.description,
           image: project.thumbnail || project.image || '',
           technologies: project.tags || project.technologies || [],
@@ -75,15 +95,16 @@ export default function ProjectsManagement({ onDataChange, onDataSave }: Project
           featured: project.featured || false,
           status: project.status || 'completed',
           links: {
-            live: project.links?.live || project.liveUrl,
-            github: project.links?.github || project.githubUrl,
-            demo: project.links?.demo || project.demoUrl
+            live: project.links?.live || project.liveUrl || '',
+            github: project.links?.github || project.githubUrl || '',
+            demo: project.links?.demo || project.demoUrl || ''
           },
           gallery: project.images || project.gallery || []
         }))
         setProjectsList(projectsWithRequiredProps)
-        onDataChange()
-      })
+        onDataChange()      }).catch((error) => {
+        console.error('Error loading default projects:', error)
+        alert('Error loading default projects. Please try again.')      })
     }
   }
 

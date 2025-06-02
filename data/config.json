@@ -41,25 +41,29 @@
       "id": "product-strategy",
       "title": "Product Strategy",
       "description": "End-to-end product planning, user research, and strategic roadmapping to align business goals with user needs.",
-      "icon": "target"
+      "icon": "target",
+      "features": ["User Research", "Product Roadmapping", "Strategic Planning", "Market Analysis"]
     },
     {
       "id": "ux-design",
       "title": "UX/UI Design",
       "description": "Beautiful, intuitive interfaces backed by solid user research and design systems thinking.",
-      "icon": "palette"
+      "icon": "palette",
+      "features": ["UI/UX Design", "Design Systems", "Prototyping", "User Testing"]
     },
     {
       "id": "prototyping",
       "title": "Prototyping",
       "description": "Interactive prototypes and design systems that bridge the gap between design and development.",
-      "icon": "code"
+      "icon": "code",
+      "features": ["Interactive Prototypes", "Design Systems", "Frontend Development", "API Integration"]
     },
     {
       "id": "mentorship",
       "title": "Design Mentorship",
       "description": "1-on-1 coaching for designers and PMs looking to level up their skills and advance their careers.",
-      "icon": "users"
+      "icon": "users",
+      "features": ["1-on-1 Coaching", "Career Guidance", "Portfolio Reviews", "Skill Development"]
     }
   ],
   "about": {

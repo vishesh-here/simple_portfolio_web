@@ -1,8 +1,6 @@
 import React from 'react'
-import { notFound } from 'next/navigation'
 import { ProjectDetail } from '@/components/ProjectDetail'
 import projects from '@/data/projects.json'
-import { Project } from '@/lib/types'
 
 interface ProjectPageProps {
   params: {
