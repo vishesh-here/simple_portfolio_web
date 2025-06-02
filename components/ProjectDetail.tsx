@@ -56,7 +56,7 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
               {/* Project Info */}
               <div>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag: any) => (
+                  {(project.tags || []).map((tag: any) => (
                     <span
                       key={tag}
                       className="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-full"
@@ -180,7 +180,7 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {project.images.map((image: any, index: number) => (
+            {(project.images || []).map((image: any, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -205,7 +205,7 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
       <section className="py-16">
         <div className="container-width section-padding">
           <div className="max-w-4xl mx-auto">
-            {project.content.map((block: any, index: number) => (
+            {(project.content || []).map((block: any, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -256,7 +256,7 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
                       <tbody>
                         {block.rows?.map((row: any, rowIndex: number) => (
                           <tr key={rowIndex} className="hover:bg-neutral-50">
-                            {row.map((cell: any, cellIndex: number) => (
+                            {(row || []).map((cell: any, cellIndex: number) => (
                               <td
                                 key={cellIndex}
                                 className="border border-neutral-300 px-4 py-3 text-neutral-600"
@@ -293,7 +293,7 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {project.results.map((result: any, index: number) => (
+            {(project.results || []).map((result: any, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}

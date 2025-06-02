@@ -2,9 +2,6 @@
 
 import React, { useState } from 'react'
 import { Settings, User, Briefcase, FolderOpen, Calendar, MessageSquare, Mail } from 'lucide-react'
-import DebugConfig from './DebugConfig'
-import SimpleConfigTest from './SimpleConfigTest'
-import StaticConfigTest from './StaticConfigTest'
 
 // Import admin form components
 import SiteSettingsForm from './admin/SiteSettingsForm'
@@ -100,11 +97,8 @@ export default function SimpleAdminDashboard({ onLogout }: AdminDashboardProps) 
         {/* Main Content */}
         <main className="flex-1 p-6">
           <div className="max-w-4xl mx-auto">
-            {/* Debug Components - Remove after testing */}
-            <SimpleConfigTest />
-            <StaticConfigTest />
-            <DebugConfig />
-            
+
+
             {ActiveComponent && React.createElement(ActiveComponent, {
               onDataChange: handleDataChange,
               onDataSave: handleDataSave
