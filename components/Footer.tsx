@@ -3,8 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Heart, ArrowUp } from 'lucide-react'
-import { motion } from 'framer-motion'
-import config from '@/data/config.json'
+import { usePortfolioConfig } from '@/lib/hooks'
 
 export function Footer() {
   const scrollToTop = () => {
@@ -12,7 +11,20 @@ export function Footer() {
   }
 
   const currentYear = new Date().getFullYear()
+  const config = usePortfolioConfig()
 
+  // Show loading state if config is not loaded yet
+  if (!config || !config.site) {
+    return (
+      <footer className="bg-neutral-900 text-white">
+        <div className="container-width section-padding">
+          <div className="py-16 text-center">
+            <div className="w-32 h-6 bg-neutral-700 animate-pulse rounded mx-auto"></div>
+          </div>
+        </div>
+      </footer>
+    )
+  }
   return (
     <footer className="bg-neutral-900 text-white">
       <div className="container-width section-padding">
@@ -29,7 +41,7 @@ export function Footer() {
               {config.site.description}. Creating digital experiences that make a difference.
             </p>
             <div className="flex gap-4">
-              {config.contact.social.map((social) => (
+              {config.contact.social.map((social: any) => (
                 <a
                   key={social.platform}
                   href={social.url}

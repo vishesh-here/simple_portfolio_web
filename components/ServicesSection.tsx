@@ -98,11 +98,6 @@ export function ServicesSection() {  const config = usePortfolioConfig()
                   <p className="text-neutral-600 leading-relaxed mb-6">
                     {service.description}
                   </p>
-                  
-                  <div className="flex items-center justify-center text-primary-600 font-medium group-hover:text-primary-700 transition-colors duration-200">
-                    Learn more
-                    <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
-                  </div>
                 </div>
               </motion.div>
             )

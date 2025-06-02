@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { useScrollPosition } from '@/lib/hooks'
-import config from '@/data/config.json'
+import { useScrollPosition, usePortfolioConfig } from '@/lib/hooks'
 
 const navItems = [
   { label: 'Home', href: '#hero' },
@@ -20,7 +19,7 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const scrollPosition = useScrollPosition()
   const isScrolled = scrollPosition > 50
-
+  const config = usePortfolioConfig()
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -31,7 +30,26 @@ export function Navigation() {
       document.body.style.overflow = 'unset'
     }
   }, [isOpen])
-
+  // Show loading state if config is not loaded yet
+  if (!config || !config.site) {
+    return (
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-white/80 backdrop-blur-md border-b border-neutral-200/50 shadow-sm'
+            : 'bg-transparent'
+        }`}
+      >
+        <nav className="container-width section-padding">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            <div className="w-32 h-6 bg-neutral-200 animate-pulse rounded"></div>
+          </div>
+        </nav>
+      </motion.header>
+    )
+  }
   return (
     <motion.header
       initial={{ y: -100 }}
