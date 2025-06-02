@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Save, RefreshCw, MessageSquare, Plus, Edit, Trash2, Star, User } from 'lucide-react'
 import { usePortfolioTestimonials } from '@/lib/hooks'
+import ImageSelector from './ImageSelector'
 
 interface TestimonialsManagementProps {
   onDataChange: () => void
@@ -310,15 +311,12 @@ export default function TestimonialsManagement({ onDataChange, onDataSave }: Tes
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-2">
-                  Avatar URL (Optional)
-                </label>
-                <input
-                  type="url"
+                <ImageSelector
                   value={editingTestimonial.avatar || ''}
-                  onChange={(e) => updateEditingTestimonial('avatar', e.target.value)}
-                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  placeholder="https://example.com/avatar.jpg"
+                  onChange={(imageData) => updateEditingTestimonial('avatar', imageData)}
+                  label="Client Avatar"
+                  category="testimonials"
+                  placeholder="Upload client avatar"
                 />
               </div>
             </div>

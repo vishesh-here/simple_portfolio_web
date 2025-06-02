@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Settings, User, Briefcase, FolderOpen, Calendar, MessageSquare, Mail } from 'lucide-react'
+import { Settings, User, Briefcase, FolderOpen, Calendar, MessageSquare, Mail, Image } from 'lucide-react'
 
 // Import admin form components
 import SiteSettingsForm from './admin/SiteSettingsForm'
@@ -12,12 +12,20 @@ import ProjectsManagement from './admin/ProjectsManagement'
 import CareerTimelineForm from './admin/CareerTimelineForm'
 import TestimonialsManagement from './admin/TestimonialsManagement'
 import ContactInfoForm from './admin/ContactInfoForm'
+import ImageLibraryWrapper from './admin/ImageLibraryWrapper'
 
 interface AdminDashboardProps {
   onLogout?: () => void
 }
 
-const adminSections = [
+interface AdminSection {
+  id: string
+  label: string
+  icon: any
+  component: React.ComponentType<{ onDataChange: () => void; onDataSave: () => void }>
+}
+
+const adminSections: AdminSection[] = [
   { id: 'site', label: 'Site Settings', icon: Settings, component: SiteSettingsForm },
   { id: 'hero', label: 'Hero Section', icon: User, component: HeroSectionForm },
   { id: 'about', label: 'About Me', icon: User, component: AboutSectionForm },
@@ -25,7 +33,8 @@ const adminSections = [
   { id: 'projects', label: 'Projects', icon: FolderOpen, component: ProjectsManagement },
   { id: 'career', label: 'Career', icon: Calendar, component: CareerTimelineForm },
   { id: 'testimonials', label: 'Testimonials', icon: MessageSquare, component: TestimonialsManagement },
-  { id: 'contact', label: 'Contact', icon: Mail, component: ContactInfoForm },
+  { id: 'images', label: 'Image Library', icon: Image, component: ImageLibraryWrapper },
+  { id: 'contact', label: 'Contact', icon: Mail, component: ContactInfoForm }
 ]
 
 export default function SimpleAdminDashboard({ onLogout }: AdminDashboardProps) {

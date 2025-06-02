@@ -80,28 +80,28 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
                     <Calendar className="w-5 h-5 text-neutral-400" />
                     <div>
                       <div className="text-sm text-neutral-500">Year</div>
-                      <div className="font-medium text-neutral-900">{project.year}</div>
+                      <div className="font-medium text-neutral-900">{project.year || new Date().getFullYear()}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <User className="w-5 h-5 text-neutral-400" />
                     <div>
                       <div className="text-sm text-neutral-500">Client</div>
-                      <div className="font-medium text-neutral-900">{project.client}</div>
+                      <div className="font-medium text-neutral-900">{project.client || 'Personal Project'}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <Clock className="w-5 h-5 text-neutral-400" />
                     <div>
                       <div className="text-sm text-neutral-500">Duration</div>
-                      <div className="font-medium text-neutral-900">{project.duration}</div>
+                      <div className="font-medium text-neutral-900">{project.duration || 'Ongoing'}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <ExternalLink className="w-5 h-5 text-neutral-400" />
                     <div>
                       <div className="text-sm text-neutral-500">Role</div>
-                      <div className="font-medium text-neutral-900">{project.role}</div>
+                      <div className="font-medium text-neutral-900">{project.role || 'Full Stack Developer'}</div>
                     </div>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
                   className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl"
                 >
                   <Image
-                    src={project.thumbnail}
+                    src={project.thumbnail || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzZiNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBBdmFpbGFibGU8L3RleHQ+PC9zdmc+'}
                     alt={project.title}
                     fill
                     className="object-cover"
@@ -140,7 +140,9 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
-              <p className="text-neutral-600 leading-relaxed">{project.overview}</p>
+              <p className="text-neutral-600 leading-relaxed">
+                {project.overview || project.longDescription || project.description || 'Project overview coming soon...'}
+              </p>
             </motion.div>
 
             <motion.div
@@ -150,9 +152,11 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <h2 className="text-2xl font-bold text-neutral-900 mb-4">Challenge</h2>
-              <p className="text-neutral-600 leading-relaxed">{project.challenge}</p>
-            </motion.div>
 
+
+              <p className="text-neutral-600 leading-relaxed">
+                {project.challenge || 'This project presented unique challenges that required innovative solutions and careful planning.'}
+              </p>            </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -160,46 +164,72 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h2 className="text-2xl font-bold text-neutral-900 mb-4">Solution</h2>
-              <p className="text-neutral-600 leading-relaxed">{project.solution}</p>
-            </motion.div>
-          </div>
-        </div>
+
+
+              <p className="text-neutral-600 leading-relaxed">
+                {project.solution || 'The solution involved modern technologies and best practices to deliver a robust and scalable application.'}
+              </p>            </motion.div>
+          </div>        </div>
       </section>
 
       {/* Project Images */}
-      <section className="py-16 bg-neutral-50">
-        <div className="container-width section-padding">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-neutral-900 mb-4">Project Gallery</h2>
-          </motion.div>
+      {(project.images || []).length > 0 && (
+        <section className="py-16 bg-neutral-50">
+          <div className="container-width section-padding">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-bold text-neutral-900 mb-4">Project Gallery</h2>
+              <p className="text-neutral-600 max-w-2xl mx-auto">
+                Explore different aspects and features of this project through these detailed images.
+              </p>
+            </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {(project.images || []).map((image: any, index: number) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative h-64 lg:h-80 rounded-xl overflow-hidden shadow-lg"
-              >
-                <Image
-                  src={image}
-                  alt={`${project.title} - Image ${index + 1}`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </motion.div>
-            ))}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {(project.images || []).map((image: any, index: number) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group relative h-64 lg:h-72 rounded-xl overflow-hidden shadow-lg bg-white"
+                >
+                  <Image
+                    src={image}
+                    alt={`${project.title} - Gallery Image ${index + 1}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                  
+                  {/* Image Counter */}
+                  <div className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded-full text-sm">
+                    {index + 1} / {project.images.length}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Gallery Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-center mt-8"
+            >
+              <p className="text-sm text-neutral-500">
+                {project.images.length} image{project.images.length !== 1 ? 's' : ''} • Click to view larger
+              </p>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Detailed Content */}
       <section className="py-16">
@@ -277,45 +307,47 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
       </section>
 
       {/* Results */}
-      <section className="py-16 bg-gradient-to-br from-primary-50 to-accent-50">
-        <div className="container-width section-padding">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-neutral-900 mb-4">Results & Impact</h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              The measurable outcomes and positive impact of this project.
-            </p>
-          </motion.div>
+      {(project.results && project.results.length > 0) ? (
+        <section className="py-16 bg-gradient-to-br from-primary-50 to-accent-50">
+          <div className="container-width section-padding">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-bold text-neutral-900 mb-4">Results & Impact</h2>
+              <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+                The measurable outcomes and positive impact of this project.
+              </p>
+            </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {(project.results || []).map((result: any, index: number) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card text-center"
-              >
-                <div className="text-2xl lg:text-3xl font-bold text-primary-600 mb-2">
-                  {result.split(' ')[0]}
-                </div>
-                <div className="text-neutral-600">
-                  {result.split(' ').slice(1).join(' ')}
-                </div>
-              </motion.div>
-            ))}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {project.results.map((result: any, index: number) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="card text-center"
+                >
+                  <div className="text-2xl lg:text-3xl font-bold text-primary-600 mb-2">
+                    {typeof result === 'string' ? result.split(' ')[0] : '✓'}
+                  </div>
+                  <div className="text-neutral-600">
+                    {typeof result === 'string' ? result.split(' ').slice(1).join(' ') : result}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
-      {/* Next Project CTA */}
-      <section className="py-16">
+      {/* Call to Action */}
+      <section className="py-16 bg-neutral-900">
         <div className="container-width section-padding">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -324,10 +356,10 @@ export function ProjectDetail({ projectId }: ProjectDetailProps) {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h2 className="text-2xl font-bold text-neutral-900 mb-4">
+            <h2 className="text-2xl font-bold text-white mb-4">
               Interested in working together?
             </h2>
-            <p className="text-lg text-neutral-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-neutral-300 mb-8 max-w-2xl mx-auto">
               Let's discuss your project and see how I can help bring your vision to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

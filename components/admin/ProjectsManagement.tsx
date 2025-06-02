@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Save, RefreshCw, FolderOpen, Plus, Edit, Trash2, Eye, ExternalLink, Github, Image as ImageIcon } from 'lucide-react'
 import { usePortfolioProjects } from '@/lib/hooks'
+import ImageSelector from './ImageSelector'
 
 interface ProjectsManagementProps {
   onDataChange: () => void
@@ -51,7 +52,7 @@ export default function ProjectsManagement({ onDataChange, onDataSave }: Project
         title: project.title,
         description: project.description,
         longDescription: project.overview || project.longDescription || project.description,
-        image: project.thumbnail || project.image || '',
+        image: project.thumbnail || project.image || '', // Map 'thumbnail' to 'image' for admin
         technologies: project.tags || project.technologies || [],
         category: project.category || 'Web Development',
         featured: project.featured || false,
@@ -70,7 +71,35 @@ export default function ProjectsManagement({ onDataChange, onDataSave }: Project
   const handleSave = async () => {
     setIsLoading(true)
     try {
-      localStorage.setItem('admin-projects', JSON.stringify(projectsList))
+      // Transform admin format back to frontend format
+      const transformedProjects = projectsList.map(project => ({
+        id: project.id,
+        title: project.title,
+        description: project.description,
+        overview: project.longDescription,
+        thumbnail: project.image, // Map 'image' to 'thumbnail' for frontend
+        tags: project.technologies,
+        category: project.category,
+        featured: project.featured,
+        status: project.status,
+        year: new Date().getFullYear().toString(),
+        client: 'Client Name',
+        duration: '3 months',
+        role: 'Developer',
+        challenge: 'Project challenges and requirements...',
+        solution: 'Solutions and approach taken...',
+        results: ['Improved user experience', 'Enhanced performance'],
+        images: project.gallery || [],
+        links: project.links,
+        content: [
+          {
+            type: 'text',
+            content: `## Project Overview\n\n${project.longDescription}\n\n## Technologies Used\n\n${project.technologies.map(tech => `- ${tech}`).join('\n')}`
+          }
+        ]
+      }))
+      
+      localStorage.setItem('admin-projects', JSON.stringify(transformedProjects))
       onDataSave()
       alert('Projects saved successfully!')
     } catch (error) {
@@ -89,7 +118,7 @@ export default function ProjectsManagement({ onDataChange, onDataSave }: Project
           title: project.title,
           description: project.description,
           longDescription: project.overview || project.longDescription || project.description,
-          image: project.thumbnail || project.image || '',
+          image: project.thumbnail || project.image || '', // Map 'thumbnail' to 'image' for admin
           technologies: project.tags || project.technologies || [],
           category: project.category || 'Web Development',
           featured: project.featured || false,
@@ -102,9 +131,11 @@ export default function ProjectsManagement({ onDataChange, onDataSave }: Project
           gallery: project.images || project.gallery || []
         }))
         setProjectsList(projectsWithRequiredProps)
-        onDataChange()      }).catch((error) => {
+        onDataChange()
+      }).catch((error) => {
         console.error('Error loading default projects:', error)
-        alert('Error loading default projects. Please try again.')      })
+        alert('Error loading default projects. Please try again.')
+      })
     }
   }
 
@@ -186,6 +217,18 @@ export default function ProjectsManagement({ onDataChange, onDataSave }: Project
       delete newLinks[linkType as keyof typeof newLinks]
     }
     setEditingProject({ ...editingProject, links: newLinks })
+  }
+
+  const addGalleryImage = (imageData: string) => {
+    if (!editingProject || !imageData) return
+    const newGallery = [...(editingProject.gallery || []), imageData]
+    setEditingProject({ ...editingProject, gallery: newGallery })
+  }
+
+  const removeGalleryImage = (index: number) => {
+    if (!editingProject) return
+    const newGallery = editingProject.gallery?.filter((_, i) => i !== index) || []
+    setEditingProject({ ...editingProject, gallery: newGallery })
   }
 
   return (
@@ -418,17 +461,69 @@ export default function ProjectsManagement({ onDataChange, onDataSave }: Project
               />
             </div>
             
+            <ImageSelector
+              value={editingProject.image}
+              onChange={(imageData) => updateEditingProject('image', imageData)}
+              label="Project Thumbnail"
+              category="projects"
+              placeholder="Upload project thumbnail image"
+            />
+            
+            {/* Project Gallery */}
             <div>
               <label className="block text-sm font-medium text-neutral-700 mb-2">
-                Main Image URL
+                Project Gallery
+                <span className="text-xs text-neutral-500 ml-2">(Additional images for project detail page)</span>
               </label>
-              <input
-                type="url"
-                value={editingProject.image}
-                onChange={(e) => updateEditingProject('image', e.target.value)}
-                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                placeholder="https://example.com/project-image.jpg"
-              />
+              <div className="space-y-4">
+                {/* Current Gallery Images */}
+                {editingProject.gallery && editingProject.gallery.length > 0 && (
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {editingProject.gallery.map((image, index) => (
+                      <div key={index} className="relative group">
+                        <div className="aspect-video bg-neutral-100 rounded-lg overflow-hidden">
+                          <img
+                            src={image}
+                            alt={`Gallery image ${index + 1}`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.currentTarget.src = '/placeholder-project.jpg'
+                            }}
+                          />
+                        </div>
+                        <button
+                          onClick={() => removeGalleryImage(index)}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {/* Add New Gallery Image */}
+                <div className="border-2 border-dashed border-neutral-300 rounded-lg p-6">
+                  <ImageSelector
+                    value=""
+                    onChange={(imageData) => addGalleryImage(imageData)}
+                    label=""
+                    category="projects"
+                    placeholder="Add gallery image"
+                    showPreview={false}
+                  />
+                </div>
+                
+                <div className="text-xs text-neutral-500">
+                  <p><strong>Gallery images will be used for:</strong></p>
+                  <ul className="list-disc list-inside mt-1 space-y-1">
+                    <li>Project detail page image carousel</li>
+                    <li>Showcasing different aspects of the project</li>
+                    <li>Before/after comparisons</li>
+                    <li>Mobile and desktop screenshots</li>
+                  </ul>
+                </div>
+              </div>
             </div>
             
             {/* Status and Featured */}

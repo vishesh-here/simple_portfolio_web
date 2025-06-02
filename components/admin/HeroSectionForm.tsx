@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Save, RefreshCw, User, Image as ImageIcon, Plus, Trash2, ExternalLink } from 'lucide-react'
 import { usePortfolioConfig } from '@/lib/hooks'
+import ImageSelector from './ImageSelector'
 
 interface HeroSectionFormProps {
   onDataChange: () => void
@@ -180,42 +181,13 @@ export default function HeroSectionForm({ onDataChange, onDataSave }: HeroSectio
           <h4 className="text-lg font-medium text-neutral-900">Profile Image</h4>
         </div>
         
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-neutral-700 mb-2">
-              Image URL
-            </label>
-            <input
-              type="url"
-              value={formData.hero.profileImage}
-              onChange={(e) => handleInputChange('hero.profileImage', e.target.value)}
-              className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="https://example.com/your-photo.jpg"
-            />
-            <p className="text-xs text-neutral-500 mt-1">
-              URL to your profile image (recommended: 400x400px)
-            </p>
-          </div>
-          
-          {formData.hero.profileImage && (
-            <div className="flex items-center gap-4">
-              <img
-                src={formData.hero.profileImage}
-                alt="Profile preview"
-                className="w-20 h-20 rounded-full object-cover border border-neutral-300"
-                onError={(e) => {
-                  e.currentTarget.src = '/placeholder-avatar.jpg'
-                }}
-              />
-              <div className="text-sm text-neutral-600">
-                <p>Preview of your profile image</p>
-                <p className="text-xs text-neutral-500">
-                  If image doesn't load, check the URL
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
+        <ImageSelector
+          value={formData.hero.profileImage}
+          onChange={(imageData) => handleInputChange('hero.profileImage', imageData)}
+          label="Profile Image"
+          category="profile"
+          placeholder="Upload your profile image"
+        />
       </div>
 
       {/* Call-to-Actions */}

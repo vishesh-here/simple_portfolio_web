@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Save, RefreshCw, User, Image as ImageIcon, Plus, Trash2, Heart } from 'lucide-react'
 import { usePortfolioConfig } from '@/lib/hooks'
+import ImageSelector from './ImageSelector'
 
 interface AboutSectionFormProps {
   onDataChange: () => void
@@ -163,42 +164,13 @@ export default function AboutSectionForm({ onDataChange, onDataSave }: AboutSect
           <h4 className="text-lg font-medium text-neutral-900">About Image</h4>
         </div>
         
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-neutral-700 mb-2">
-              Image URL
-            </label>
-            <input
-              type="url"
-              value={formData.about.image}
-              onChange={(e) => handleInputChange('about.image', e.target.value)}
-              className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="https://example.com/about-photo.jpg"
-            />
-            <p className="text-xs text-neutral-500 mt-1">
-              URL to an image that represents you (recommended: 600x400px or similar ratio)
-            </p>
-          </div>
-          
-          {formData.about.image && (
-            <div className="flex items-center gap-4">
-              <img
-                src={formData.about.image}
-                alt="About preview"
-                className="w-32 h-24 rounded-lg object-cover border border-neutral-300"
-                onError={(e) => {
-                  e.currentTarget.src = '/placeholder-image.jpg'
-                }}
-              />
-              <div className="text-sm text-neutral-600">
-                <p>Preview of your about image</p>
-                <p className="text-xs text-neutral-500">
-                  If image doesn't load, check the URL
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
+        <ImageSelector
+          value={formData.about.image}
+          onChange={(imageData) => handleInputChange('about.image', imageData)}
+          label="About Section Image"
+          category="about"
+          placeholder="Upload an image that represents you"
+        />
       </div>
 
       {/* Fun Facts */}
