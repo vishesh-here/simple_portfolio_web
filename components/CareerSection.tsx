@@ -126,32 +126,36 @@ export function CareerSection() {
                     </p>
 
                     {/* Achievements */}
-                    <div className="mb-6">
-                      <h4 className="font-medium text-neutral-900 mb-3">Key Achievements:</h4>
-                      <ul className="space-y-2">
-                        {role.achievements.map((achievement: any, achievementIndex: number) => (
-                          <li key={achievementIndex} className="flex items-start gap-3">
-                            <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-neutral-600">{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {role.achievements && Array.isArray(role.achievements) && role.achievements.length > 0 && (
+                      <div className="mb-6">
+                        <h4 className="font-medium text-neutral-900 mb-3">Key Achievements:</h4>
+                        <ul className="space-y-2">
+                          {role.achievements.map((achievement: any, achievementIndex: number) => (
+                            <li key={achievementIndex} className="flex items-start gap-3">
+                              <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 flex-shrink-0" />
+                              <span className="text-neutral-600">{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
 
                     {/* Skills */}
-                    <div>
-                      <h4 className="font-medium text-neutral-900 mb-3">Skills & Technologies:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {role.skills.map((skill: any) => (
-                          <span
-                            key={skill}
-                            className="px-3 py-1 bg-primary-50 text-primary-700 text-sm rounded-full border border-primary-200"
-                          >
-                            {skill}
-                          </span>
-                        ))}
+                    {role.skills && Array.isArray(role.skills) && role.skills.length > 0 && (
+                      <div>
+                        <h4 className="font-medium text-neutral-900 mb-3">Skills & Technologies:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {role.skills.map((skill: any) => (
+                            <span
+                              key={skill}
+                              className="px-3 py-1 bg-primary-50 text-primary-700 text-sm rounded-full border border-primary-200"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
