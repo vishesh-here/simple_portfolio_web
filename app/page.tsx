@@ -10,8 +10,8 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      {/* Testing components one by one
       <ServicesSection />
+      {/* Testing components one by one
       <ProjectsSection />
       <CareerSection />
       <TestimonialsSection />
