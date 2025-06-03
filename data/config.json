@@ -12,7 +12,7 @@
   "hero": {
     "tagline": "Crafting digital experiences that matter",
     "fullIntro": "I'm a product designer and creative technologist passionate about building beautiful, functional digital experiences. With 8+ years in the industry, I help startups and enterprises transform complex problems into elegant solutions.",
-    "profileImage": "/images/profile.jpg",
+    "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     "ctas": [
       {
         "label": "Contact Me",

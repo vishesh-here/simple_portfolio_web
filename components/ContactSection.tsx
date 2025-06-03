@@ -14,11 +14,16 @@ const iconMap = {
 
 export function ContactSection() {
   const config = usePortfolioConfig()
+  
+  // Initialize state with default values
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
   // Return loading state if config is not yet loaded
   if (!config || !config.contact) {
     return (
@@ -29,8 +34,7 @@ export function ContactSection() {
         </div>
       </section>
     )
-  }  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  }
 
   const { contact } = config
 
