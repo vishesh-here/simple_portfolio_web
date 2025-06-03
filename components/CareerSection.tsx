@@ -32,7 +32,7 @@ export function CareerSection() {
   const career = usePortfolioCareer()
 
   // Show loading state if career data is not loaded yet
-  if (!career) {
+  if (!career || !Array.isArray(career) || career.length === 0) {
     return (
       <section id="career" className="py-20 lg:py-32 bg-white">
         <div className="container-width section-padding">
@@ -114,10 +114,10 @@ export function CareerSection() {
                       <div className="flex items-center gap-2 text-neutral-500 text-sm">
                         <Calendar className="w-4 h-4" />
                         <span>
-                          {formatDate(role.startDate)} - {role.endDate ? formatDate(role.endDate) : 'Present'}
+                          {role.startDate ? formatDate(role.startDate) : 'N/A'} - {role.endDate ? formatDate(role.endDate) : 'Present'}
                         </span>
                         <span className="text-neutral-400">•</span>
-                        <span>{calculateDuration(role.startDate, role.endDate)}</span>
+                        <span>{role.startDate ? calculateDuration(role.startDate, role.endDate) : 'N/A'}</span>
                       </div>
                     </div>
 
