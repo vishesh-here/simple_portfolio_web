@@ -12,8 +12,8 @@ export default function Home() {
       <HeroSection />
       <ServicesSection />
       <ProjectsSection />
-      {/* Testing components one by one
       <CareerSection />
+      {/* Testing components one by one
       <TestimonialsSection />
       <AboutSection />
       <ContactSection />
