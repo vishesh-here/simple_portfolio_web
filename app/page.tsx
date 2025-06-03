@@ -10,13 +10,13 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+      {/* Testing components one by one
       <ServicesSection />
+      <ProjectsSection />
       <CareerSection />
       <TestimonialsSection />
       <AboutSection />
       <ContactSection />
-      {/* Testing components one by one
-      <ProjectsSection />
       */}
     </>
   )
