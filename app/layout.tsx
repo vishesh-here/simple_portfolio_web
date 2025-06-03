@@ -9,6 +9,7 @@ import config from '@/data/config.json'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(config.site.url || 'https://localhost:3000'),
   title: `${config.site.title} - ${config.site.description}`,
   description: config.hero.fullIntro,
   keywords: ['product designer', 'ux designer', 'creative technologist', 'portfolio'],
