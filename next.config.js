@@ -4,6 +4,15 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: false, // Enable image optimization on Vercel
+    domains: ['images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   
   // Uncomment below for static hosting like GitHub Pages

@@ -90,7 +90,7 @@ export function HeroSection() {  const config = usePortfolioConfig()
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50" />
-      <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-5" />
+      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
       
       {/* Floating Elements */}
       <motion.div
