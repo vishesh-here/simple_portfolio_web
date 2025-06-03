@@ -28,7 +28,24 @@ const itemVariants = {
   },
 }
 
-export function CareerSection() {  const career = usePortfolioCareer()
+export function CareerSection() {
+  const career = usePortfolioCareer()
+
+  // Show loading state if career data is not loaded yet
+  if (!career) {
+    return (
+      <section id="career" className="py-20 lg:py-32 bg-white">
+        <div className="container-width section-padding">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-200 rounded w-64 mx-auto mb-4"></div>
+              <div className="h-4 bg-gray-200 rounded w-96 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
   return (
     <section id="career" className="py-20 lg:py-32 bg-white">
       <div className="container-width section-padding">
@@ -58,7 +75,7 @@ export function CareerSection() {  const career = usePortfolioCareer()
             {/* Timeline Line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-200 via-primary-400 to-primary-200 hidden lg:block" />
 
-            {career && career.map((role: any) => (
+            {career && Array.isArray(career) && career.map((role: any) => (
               <motion.div
                 key={role.id}
                 variants={itemVariants}
