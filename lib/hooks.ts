@@ -88,15 +88,15 @@ export function useMediaQuery(query: string) {
 // Portfolio Data Hooks - Read from localStorage with static JSON fallback
 export function usePortfolioConfig() {
   // Import static data as fallback
-  const [staticConfig, setStaticConfig] = useState<any>({})
+  const [staticConfig, setStaticConfig] = useState<any>(null)
   
   useEffect(() => {
     // Dynamically import static config
     import('@/data/config.json').then((data) => {
-      setStaticConfig(data.default || {})
+      setStaticConfig(data.default || null)
     }).catch((error) => {
       console.error('Error loading config:', error)
-      setStaticConfig({})
+      setStaticConfig(null)
     })
   }, [])
 

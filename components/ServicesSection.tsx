@@ -37,7 +37,7 @@ const cardVariants = {
 export function ServicesSection() {  const config = usePortfolioConfig()
   
   // Return loading state if config is not yet loaded
-  if (!config) {
+  if (!config || !config.services) {
     return (
       <section id="services" className="py-20 lg:py-32 bg-white">
         <div className="container-width section-padding text-center">

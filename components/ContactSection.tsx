@@ -20,7 +20,7 @@ export function ContactSection() {
     message: '',
   })
   // Return loading state if config is not yet loaded
-  if (!config) {
+  if (!config || !config.contact) {
     return (
       <section id="contact" className="py-20 lg:py-32 bg-neutral-900">
         <div className="container-width section-padding text-center">

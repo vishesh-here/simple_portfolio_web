@@ -44,7 +44,7 @@ const floatingVariants = {
 export function HeroSection() {  const config = usePortfolioConfig()
   
   // Return loading state if config is not yet loaded
-  if (!config) {
+  if (!config || !config.hero) {
     return (
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="text-center">
@@ -125,9 +125,9 @@ export function HeroSection() {  const config = usePortfolioConfig()
                 Available for new projects
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 leading-tight">
-                <span className="block">{hero.tagline.split(' ').slice(0, 2).join(' ')}</span>
+                <span className="block">{hero.tagline?.split(' ').slice(0, 2).join(' ') || 'Welcome to'}</span>
                 <span className="gradient-text">
-                  {hero.tagline.split(' ').slice(2).join(' ')}
+                  {hero.tagline?.split(' ').slice(2).join(' ') || 'My Portfolio'}
                 </span>
               </h1>
             </motion.div>

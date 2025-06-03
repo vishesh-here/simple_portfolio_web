@@ -1,12 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // For static hosting like GitHub Pages
-  output: 'export',
+  // For Vercel deployment (default Next.js behavior)
   trailingSlash: true,
   images: {
-    unoptimized: true,
+    unoptimized: false, // Enable image optimization on Vercel
   },
-  // Uncomment and set if deploying to a subdirectory
+  
+  // Uncomment below for static hosting like GitHub Pages
+  // output: 'export',
+  // images: {
+  //   unoptimized: true,
+  // },
   // basePath: '/your-repo-name',
   // assetPrefix: '/your-repo-name/',
 }

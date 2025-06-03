@@ -10,9 +10,9 @@
     "lint": "next lint",
     "setup": "node scripts/setup.js",
     "setup-admin": "node scripts/setup-admin.js",
-    "deploy": "node scripts/deploy.js",
-    "export": "next build",
-    "serve": "node scripts/serve-local.js"
+    "deploy": "node scripts/deploy.js",    "deploy-cloud": "node scripts/deploy-cloud.js",    "export": "next build && next export",
+    "serve": "node scripts/serve-local.js",
+    "build:static": "next build"
   },
   "dependencies": {
     "next": "14.0.0",
