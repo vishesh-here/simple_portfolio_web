@@ -20,6 +20,7 @@ export function Navigation() {
   const scrollPosition = useScrollPosition()
   const isScrolled = scrollPosition > 50
   const config = usePortfolioConfig()
+  
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -30,35 +31,29 @@ export function Navigation() {
       document.body.style.overflow = 'unset'
     }
   }, [isOpen])
+  
   // Show loading state if config is not loaded yet
   if (!config || !config.site) {
     return (
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/80 backdrop-blur-md border-b border-neutral-200/50 shadow-sm'
-            : 'bg-transparent'
-        }`}
+        className="glass-nav"
       >
         <nav className="container-width section-padding">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            <div className="w-32 h-6 bg-neutral-200 animate-pulse rounded"></div>
+            <div className="w-32 h-6 bg-white/20 animate-pulse rounded-lg backdrop-blur-sm"></div>
           </div>
         </nav>
       </motion.header>
     )
   }
+  
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/80 backdrop-blur-md border-b border-neutral-200/50 shadow-sm'
-          : 'bg-transparent'
-      }`}
+      className="glass-nav"
     >
       <nav className="container-width section-padding">
         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -78,9 +73,10 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 font-medium"
+                className="glass-text hover:text-white transition-all duration-300 font-medium relative group"
               >
                 {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
           </div>
@@ -88,7 +84,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-neutral-100 transition-colors duration-200"
+            className="lg:hidden p-2 rounded-lg glass-text hover:bg-white/10 transition-all duration-300"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -103,7 +99,12 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-neutral-200"
+            className="lg:hidden"
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(20px)',
+              borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+            }}
           >
             <div className="container-width section-padding py-6">
               <div className="flex flex-col space-y-4">
@@ -117,14 +118,12 @@ export function Navigation() {
                     <Link
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="block text-lg font-medium text-neutral-600 hover:text-neutral-900 transition-colors duration-200"
+                      className="block text-lg font-medium glass-text hover:text-white transition-all duration-300 py-2 px-4 rounded-lg hover:bg-white/10"
                     >
                       {item.label}
                     </Link>
                   </motion.div>
                 ))}
-
-
               </div>
             </div>
           </motion.div>

@@ -87,29 +87,27 @@ export function HeroSection() {  const config = usePortfolioConfig()
   }
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50" />
-      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
-      
-      {/* Floating Elements */}
-      <motion.div
-        variants={floatingVariants}
-        animate="animate"
-        className="absolute top-20 left-10 w-20 h-20 bg-primary-200 rounded-full opacity-20 blur-xl"
-      />
-      <motion.div
-        variants={floatingVariants}
-        animate="animate"
-        className="absolute bottom-20 right-10 w-32 h-32 bg-accent-200 rounded-full opacity-20 blur-xl"
-        style={{ animationDelay: '2s' }}
-      />
-      <motion.div
-        variants={floatingVariants}
-        animate="animate"
-        className="absolute top-1/2 left-1/4 w-16 h-16 bg-primary-300 rounded-full opacity-10 blur-lg"
-        style={{ animationDelay: '4s' }}
-      />
+    <section id="hero" className="glass-hero">
+      {/* Floating Glass Shapes */}
+      <div className="floating-shapes">
+        <motion.div
+          variants={floatingVariants}
+          animate="animate"
+          className="floating-shape"
+        />
+        <motion.div
+          variants={floatingVariants}
+          animate="animate"
+          className="floating-shape"
+          style={{ animationDelay: '2s' }}
+        />
+        <motion.div
+          variants={floatingVariants}
+          animate="animate"
+          className="floating-shape"
+          style={{ animationDelay: '4s' }}
+        />
+      </div>
 
       <div className="relative z-10 container-width section-padding">
         <motion.div
@@ -121,10 +119,10 @@ export function HeroSection() {  const config = usePortfolioConfig()
           {/* Content */}
           <div className="text-center lg:text-left">
             <motion.div variants={itemVariants} className="mb-6">
-              <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-4 py-2 glass-button text-sm font-medium mb-4">
                 Available for new projects
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold glass-text leading-tight">
                 <span className="block">{hero.tagline?.split(' ').slice(0, 2).join(' ') || 'Welcome to'}</span>
                 <span className="gradient-text">
                   {hero.tagline?.split(' ').slice(2).join(' ') || 'My Portfolio'}
@@ -134,7 +132,7 @@ export function HeroSection() {  const config = usePortfolioConfig()
 
             <motion.p
               variants={itemVariants}
-              className="text-lg lg:text-xl text-neutral-600 mb-8 max-w-2xl leading-relaxed"
+              className="text-lg lg:text-xl glass-text-muted mb-8 max-w-2xl leading-relaxed"
             >
               {hero.fullIntro}
             </motion.p>
@@ -160,19 +158,19 @@ export function HeroSection() {  const config = usePortfolioConfig()
             {/* Stats */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-neutral-200"
+              className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-white/20"
             >
               <div className="text-center lg:text-left">
-                <div className="text-2xl lg:text-3xl font-bold text-neutral-900">8+</div>
-                <div className="text-sm text-neutral-600">Years Experience</div>
+                <div className="text-2xl lg:text-3xl font-bold glass-text">8+</div>
+                <div className="text-sm glass-text-muted">Years Experience</div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-2xl lg:text-3xl font-bold text-neutral-900">50+</div>
-                <div className="text-sm text-neutral-600">Projects Completed</div>
+                <div className="text-2xl lg:text-3xl font-bold glass-text">50+</div>
+                <div className="text-sm glass-text-muted">Projects Completed</div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-2xl lg:text-3xl font-bold text-neutral-900">15+</div>
-                <div className="text-sm text-neutral-600">Happy Clients</div>
+                <div className="text-2xl lg:text-3xl font-bold glass-text">15+</div>
+                <div className="text-sm glass-text-muted">Happy Clients</div>
               </div>
             </motion.div>
           </div>
@@ -188,8 +186,8 @@ export function HeroSection() {  const config = usePortfolioConfig()
                 transition={{ duration: 0.3 }}
                 className="relative w-80 h-80 lg:w-96 lg:h-96"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full opacity-20 blur-2xl" />
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-full blur-2xl" />
+                <div className="relative w-full h-full rounded-full overflow-hidden glass-card border-2 border-white/30">
                   <Image
                     src={hero.profileImage || '/images/placeholder-profile.jpg'}
                     alt={config.site.title}
@@ -205,7 +203,7 @@ export function HeroSection() {  const config = usePortfolioConfig()
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
-                className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg border border-neutral-200"
+                className="absolute -bottom-4 -right-4 glass-card p-4"
               >
                 <div className="w-4 h-4 bg-green-400 rounded-full animate-pulse" />
               </motion.div>
@@ -224,12 +222,12 @@ export function HeroSection() {  const config = usePortfolioConfig()
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-neutral-300 rounded-full flex justify-center"
+          className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center backdrop-blur-sm"
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-neutral-400 rounded-full mt-2"
+            className="w-1 h-3 bg-white/60 rounded-full mt-2"
           />
         </motion.div>
       </motion.div>

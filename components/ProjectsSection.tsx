@@ -48,7 +48,7 @@ export function ProjectsSection() {
   const featuredProjects = projectsData.slice(0, 3)
 
   return (
-    <section id="projects" className="py-20 lg:py-32 bg-neutral-50">
+    <section id="projects" className="py-20 lg:py-32 relative">
       <div className="container-width section-padding">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -57,10 +57,10 @@ export function ProjectsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold glass-text mb-4">
             Featured Projects
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg glass-text-muted max-w-2xl mx-auto">
             A selection of recent work that showcases my approach to solving complex design challenges.
           </p>
         </motion.div>
@@ -80,32 +80,32 @@ export function ProjectsSection() {
               className="group"
             >
               <Link href={`/projects/${project.id}`}>
-                <div className="card h-full overflow-hidden hover:shadow-xl transition-all duration-300">
+                <div className="glass-card h-full overflow-hidden">
                   {/* Project Image */}
-                  <div className="relative h-48 mb-6 -m-6 mb-6">
+                  <div className="relative h-48 mb-6 -m-6 mb-6 rounded-t-[20px] overflow-hidden">
                     <Image
                       src={project.thumbnail || '/images/placeholder-project.jpg'}
                       alt={project.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
                   {/* Project Info */}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-primary-600 font-medium">
+                      <span className="text-sm font-medium glass-button-primary px-3 py-1 rounded-full">
                         {project.year}
                       </span>
-                      <ExternalLink className="w-4 h-4 text-neutral-400 group-hover:text-primary-600 transition-colors duration-200" />
+                      <ExternalLink className="w-4 h-4 glass-text-muted group-hover:text-white transition-colors duration-200" />
                     </div>
 
-                    <h3 className="text-xl font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors duration-200">
+                    <h3 className="text-xl font-semibold glass-text group-hover:text-white transition-colors duration-200">
                       {project.title}
                     </h3>
 
-                    <p className="text-neutral-600 leading-relaxed">
+                    <p className="glass-text-muted leading-relaxed">
                       {project.description}
                     </p>
 
@@ -114,20 +114,20 @@ export function ProjectsSection() {
                       {project.tags && project.tags.slice(0, 3).map((tag: string) => (
                         <span
                           key={tag}
-                          className="px-3 py-1 bg-neutral-100 text-neutral-600 text-sm rounded-full"
+                          className="px-3 py-1 bg-white/10 glass-text-muted text-sm rounded-full backdrop-blur-sm border border-white/10"
                         >
                           {tag}
                         </span>
                       ))}
                       {project.tags && project.tags.length > 3 && (
-                        <span className="px-3 py-1 bg-neutral-100 text-neutral-600 text-sm rounded-full">
+                        <span className="px-3 py-1 bg-white/10 glass-text-muted text-sm rounded-full backdrop-blur-sm border border-white/10">
                           +{project.tags.length - 3}
                         </span>
                       )}
                     </div>
 
                     {/* Read More */}
-                    <div className="flex items-center text-primary-600 font-medium group-hover:text-primary-700 transition-colors duration-200 pt-2">
+                    <div className="flex items-center glass-text font-medium group-hover:text-white transition-colors duration-200 pt-2">
                       View Case Study
                       <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
                     </div>
